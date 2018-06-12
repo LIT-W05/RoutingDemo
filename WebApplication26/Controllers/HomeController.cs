@@ -34,9 +34,9 @@ namespace WebApplication26.Controllers
         }
 
         [Route("{title}")]
-        public void Story(string title, string author)
+        public void Story(string title)
         {
-            Response.Write($"<h1>Story page for {title} - written by {author}</h1>");
+            Response.Write($"<h1>Story page for {title}</h1>");
         }
     }
 }
