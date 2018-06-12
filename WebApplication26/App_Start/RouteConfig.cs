@@ -13,6 +13,8 @@ namespace WebApplication26
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapMvcAttributeRoutes(); //MUST ADD THIS LINE!!
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

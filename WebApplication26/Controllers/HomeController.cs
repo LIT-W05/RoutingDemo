@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using shortid;
 
 namespace WebApplication26.Controllers
 {
@@ -10,21 +11,32 @@ namespace WebApplication26.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.ShortId = ShortId.Generate(true, false);
+            ViewBag.CurrentUrl = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, "");
             return View();
         }
 
-        public ActionResult About()
+        public void Other(int id)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            Response.Write($"<h1>The id passed in was: {id}</h1>");
         }
 
-        public ActionResult Contact()
+        [Route("foo/bar/baz")]
+        public void Hello()
         {
-            ViewBag.Message = "Your contact page.";
+            Response.Write("<h1>Hello page!!</h1>");
+        }
 
-            return View();
+        [Route("simchas/{simchaid}/contributions")]
+        public void HelloFace(int simchaId)
+        {
+            Response.Write("<h1>Contributions page for id " + simchaId + "</h1>");
+        }
+
+        [Route("{title}")]
+        public void Story(string title, string author)
+        {
+            Response.Write($"<h1>Story page for {title} - written by {author}</h1>");
         }
     }
 }
